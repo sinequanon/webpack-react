@@ -1,0 +1,9 @@
+// Normally we wouldn't need a separate .babelrc file since we run the babel transpiler 
+// through webpack. However we need this in order to be able to write ES6 in the
+// webpack config files.
+// If you append the config files with 'babel', it will trigger babel-register
+// and webpack will transpile via the interpret module.
+// eg. webpack.config.js vs webpack.config.babel.js
+{
+    presets : [ 'es2015' ]
+}

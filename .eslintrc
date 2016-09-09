@@ -1,0 +1,47 @@
+{
+    // Extend the airbnb base .eslintrc
+    "extends" : "airbnb-base",
+
+    "env" : {
+        "browser" : true,
+        "node" : true,
+        "mocha" : true
+    },
+
+    // Switch the parser to use babel-eslint, otherwise eslint will complain
+    // when it starts processing JSX
+    "parser" : "babel-eslint",
+
+    // Use the eslint-plugin-react 
+    "plugins" : [
+        "react"
+    ],
+
+    // React specific settings
+    "settings" : {
+        "react" : {
+            // Default pragma to react
+            "pragma" : "React" 
+        }
+    },
+
+    "parserOptions" : {
+        // Support JSX via the eslint-plugin-react
+        "ecmaFeatures" : {
+            "jsx" : true
+        }
+    },
+
+    "rules" : {
+        // Prevent eslint from complaining when a react component is used in JSX
+        // but not explicitly used in normal javascript
+        "react/jsx-uses-vars" : 1,
+        // Prevents React is defined but unused warning when declaring at the top
+        // of a JSX file
+        "react/jsx-uses-react" : 1,
+        // Assumes React is always in scope so we can import React and not have
+        // errors or warnings if we don't explicitly use it
+        "react/react-in-jsx-scope" : 1,
+        "indent" : [ "warn", 4 ]
+    }
+}
