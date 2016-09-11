@@ -1,7 +1,11 @@
+@import 'elements.scss';
+$backgroundcolor: red;
+
 body {
-    background-color : red;
+    background-color: $backgroundcolor;
+    flex: 1;
 }
 
 h1 {
-    background-image : url('../assets/filestage.png');
+    background-image: url('../assets/filestage.png');
 }

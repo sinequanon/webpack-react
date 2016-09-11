@@ -1,7 +1,22 @@
 import path from 'path';
 import webpack from 'webpack';
+// Emits html files injected with asset tags
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+// Used to output css file in PROD build
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+// Plugin for using cssnext features
+import postcssnext from 'postcss-cssnext';
+// Use precss as replacement for sass lib due to apparent speed up and much 
+// faster compilation using postcss
+import precss from 'precss';
+// Include postcss-import to fix a hot loading bug in imported css files
+import postcssImport from 'postcss-import';
+// Linting for styles
+import stylelintPlugin from 'stylelint-webpack-plugin';
+// Reporter for postcss process
+import postcssReporter from 'postcss-reporter';
+// Fixes possible dupes in ExtractTextPlugin 
+import optimizeCssAssets from 'optimize-css-assets-webpack-plugin';
 
 const IS_PROD = process.env.NODE_ENV === 'production';
 
@@ -13,6 +28,7 @@ let plugins = IS_PROD ? [
                     new webpack.optimize.UglifyJsPlugin(),
                     // Emits css file using naming pattern below
                     new ExtractTextPlugin('[name]-[contenthash].css'),
+                    new optimizeCssAssets(),
                     // Prevents emitting assets that include errors in them
                     // Do not include in non PROD environments otherwise lint 
                     // warnings will fail to emit anything to the build
@@ -22,17 +38,28 @@ let plugins = IS_PROD ? [
 
 export default {
      entry : { 
+          // The main JS file for the app
           app : path.resolve(__dirname, 'src', 'client.js'),
-          style : path.resolve(__dirname, 'src', 'styles', 'app.scss')
+          // Styles are referenced in 'client.js' via an import statement in 
+          // order for webpack to process it. However it can also be included
+          // as an entry as seen below. However this will emit a JS output file 
+          // with the same name as the stylesheet that will have an empty eval 
+          // statement. The import statement method in 'client.js' is preferred.
+          //style : path.resolve(__dirname, 'src', 'styles', 'app.scss')
      },
      output : {
+          // File system path where output files are emitted
           path          : path.resolve(__dirname, 'dist'),
+          // Name of the emitted file. [name] here means it will take on the same
+          // name as the source. Otherwise it can be hardcoded.
           filename      : '[name].js',
           chunkFileName : '[id].js',
+          // The logical path in the browser
           publicPath    : '/'
      },
      devtool : 'cheap-eval-source-map',
      resolve : {
+          // The location of our node_modules
           root : [
                path.resolve(__dirname, 'node_modules')
           ]
@@ -40,6 +67,9 @@ export default {
      target : 'web',
      module : {
           preLoaders : [
+               // Run js code through eslint. This also could have been written
+               // as an additional loader in the loaders section for js* files
+               // eg 'babel?presets[]...!eslint'
                {
                     test    : /\.jsx?$/,
                     exclude : /node_modules/,
@@ -48,6 +78,7 @@ export default {
           ],
           loaders : [
                // Loaders in webpack are read from right to left
+               // Transpiles our JS files
                {
                     test    : /\.jsx?$/,
                     exclude : /node_modules/,
@@ -61,12 +92,13 @@ export default {
                      }
                      */
                },
+               // Convert from sass -> postcss -> css -> style
                {
-                    test   : /\.scss$/,
-                    // Convert from sass -> postcss -> css -> style
+                    test   : /\.s?css$/,
                     loader : IS_PROD ?
-                              ExtractTextPlugin.extract('style', 'css?sourceMap!postcss!sass?sourceMap') :
-                              'style!css?sourceMap!postcss!sass?sourceMap'
+                              // Use plugin to emit file that is processed and minimized
+                              ExtractTextPlugin.extract('style', 'css?sourceMap&minimize!postcss?sourceMap') :
+                              'style!css?sourceMap!postcss?sourceMap'
                     // Could also be written :
                     // loaders : [ 'style', 'css?sourceMap', 'postcss', 'sass?sourceMap' ]
                },
@@ -93,5 +125,18 @@ export default {
                // Source template to use for the emitted asset
                template : 'src/app.html',
           }),
-     ])
+          // Add linting to CSS using stylelint. We are extending stylelint-config-standard
+          new stylelintPlugin({})
+     ]),
+     // Post css function for additional css compilation
+     postcss : function(webpack) {
+          return [ 
+               // Fixes a bug where imports are not recompiled during hot loading
+               // Remove once precss fixes this
+               postcssImport({ addDependencyTo: webpack }), // This must be first in order for @imports to hot load during development
+               precss,
+               postcssnext(),
+               postcssReporter({ clearMessages : true }),
+          ];
+     }
 };
