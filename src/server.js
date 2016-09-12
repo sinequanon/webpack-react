@@ -27,6 +27,9 @@ app.get('*', (req, res) => {
           } else if (renderProps) {
                if (!baseHtml) {
                     console.log('file load');
+                    // This only works correctly if we have a single entry point
+                    // Multiple entry points would require us to find and load
+                    // the correct entry point file instead of just index.html
                     fs.readFile(path.resolve(__dirname, '..', 'tmp', 'index.html'), (err, data) => {
                          if (err) {
                               throw err;
@@ -46,7 +49,7 @@ app.get('*', (req, res) => {
 
 function renderPage(baseHtml, renderProps) {
      const content = renderToString(<RouterContext {...renderProps}/>);
-     return baseHtml.replace('<div class="appMountPoint"></div>', content);
+     return baseHtml.replace('<div class="appMountPoint"></div>', '<div class="appMountPoint">' + content + '</div>');
 }
 
 app.listen(PORT, () => {
