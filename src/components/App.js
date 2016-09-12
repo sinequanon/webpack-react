@@ -10,6 +10,7 @@ export default React.createClass({
                 <li><NavLink to='/'>Home</NavLink></li>
                 <li><NavLink to='/section1'>Section 1</NavLink></li>
                 <li><NavLink to='/section2'>Section 2</NavLink></li>
+                <li><NavLink to='/routeParams/react/rules'>Routes params</NavLink></li>
             </ul>
             { this.props.children }
         </div>

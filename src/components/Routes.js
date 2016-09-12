@@ -4,11 +4,13 @@ import App from './App';
 import Home from './Home';
 import Section1 from './Section1';
 import Section2 from './Section2';
+import RouteParams from './RouteParams';
 
 module.exports = (
     <Route path='/' component={App}>
         <IndexRoute component={Home}/>
         <Route path='/section1' component={Section1}/>
         <Route path='/section2' component={Section2}/>
+        <Route path='/routeParams/:first/:second' component={RouteParams}/>
     </Route>
 );
