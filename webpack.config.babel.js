@@ -20,7 +20,6 @@ import optimizeCssAssets from 'optimize-css-assets-webpack-plugin';
 
 const IS_PROD = process.env.NODE_ENV === 'production';
 
-console.log('ISPROD', IS_PROD);
 // Base plugins we want to include in the config
 let plugins = IS_PROD ? [
                     new webpack.optimize.DedupePlugin(),
@@ -82,12 +81,15 @@ export default {
                {
                     test    : /\.jsx?$/,
                     exclude : /node_modules/,
-                    loader  : 'babel?presets[]=es2015&presets[]=react&plugins[]=transform-runtime'
+                    // Disable react hot module loading in PROD
+                    loader  : IS_PROD ? 
+                              'babel?presets[]=es2015&presets[]=stage-0&presets[]=react&plugins[]=transform-runtime' :
+                              'babel?presets[]=es2015&presets[]=stage-0&presets[]=react&presets[]=react-hmre&plugins[]=transform-runtime'
                     /*
                      Could also be written :
                      loaders : ['babel-loader', 'eslint-loader'],
                      query : {
-                         presets : [ 'es2015', 'react' ],
+                         presets : [ 'es2015', 'stage-0', 'react', 'react-hmre' ],
                          plugins : [ 'transform-runtime' ]
                      }
                      */
@@ -103,10 +105,16 @@ export default {
                     // loaders : [ 'style', 'css?sourceMap', 'postcss', 'sass?sourceMap' ]
                },
                {
+                    // Image assets
                     test   : [/\.png/, /\.jpg$/, /\.gif$/],
                     // Any image assets will be autoconverted to inline base64 
                     // unless they are over the limit specified in the query parameter.
+                    // If the assets is over the limit, the file-loader takes over
+                    // and will emit the file using the naming pattern specified.
                     // name options include [path] [name] [hash] [ext]
+                    // In the case below, we are telling the loader to emit the file 
+                    // in the static directory using the file name followed by 
+                    // the hash and extension.
                     loader : 'url?limit=1&name=static/[name]-[hash].[ext]'
                }
           ]
@@ -118,6 +126,9 @@ export default {
           // include any css or javascript references automatically
           new HtmlWebpackPlugin({ 
                // In prod we want to serve the HTML pre-rendered via the server
+               // so we want to emit the file outside the final /dist directory
+               // otherwise the emitted 'index.html' file will be used instead of
+               // the server pre-rendered file from express
                filename : IS_PROD ? '../tmp/index.html' : 'index.html',
                // Inject assets at the bottom of the body tag. Value can also be 'body'
                inject   : true,
@@ -132,10 +143,10 @@ export default {
      // Post css function for additional css compilation
      postcss : function(webpack) {
           return [ 
-               // Fixes a bug where imports are not recompiled during hot loading
+               // Fixes a bug where file @imports are not recompiled during hot loading
                // Remove once precss fixes this
                postcssImport({ addDependencyTo: webpack }), // This must be first in order for @imports to hot load during development
-               // Allow sass syntax to css
+               // Allow sass syntax in css
                precss,
                // Allow next gen css syntax
                postcssnext(),

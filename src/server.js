@@ -6,6 +6,7 @@ import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import compression from 'compression';
 import routes from './components/Routes';
+const debug = require('debug')('server');
 
 const PORT = process.env.PORT || 8080;
 
@@ -13,6 +14,7 @@ const app = express();
 
 if (process.env.NODE_ENV === 'production') {
      app.use(compression());
+     debug('Running PRODUCTION');
 }
 // Tell express where to load static assets
 app.use(express.static(path.resolve(__dirname, '../dist')));
@@ -21,12 +23,12 @@ let baseHtml;
 app.get('*', (req, res) => {
      match({ routes : routes, location : req.url }, ( error, redirectLocation, renderProps ) => {
           if (error) {
-               console.log('Error', error);
+               debug('Error', error);
           } else if (redirectLocation) {
                res.redirect(redirectLocation.pathname + redirectLocation.search)
           } else if (renderProps) {
                if (!baseHtml) {
-                    console.log('file load');
+                    debug('Loading file...');
                     // This only works correctly if we have a single entry point
                     // Multiple entry points would require us to find and load
                     // the correct entry point file instead of just index.html
@@ -38,7 +40,7 @@ app.get('*', (req, res) => {
                          res.send(renderPage(baseHtml, renderProps));
                     } );
                } else {
-                    console.log('no file load');
+                    debug('No file load');
                     res.send(renderPage(baseHtml, renderProps));
                }
           } else {
@@ -53,5 +55,5 @@ function renderPage(baseHtml, renderProps) {
 }
 
 app.listen(PORT, () => {
-     console.log('Express listening on port ' + PORT);
+     debug('Express listening on port %s', PORT);
 })
