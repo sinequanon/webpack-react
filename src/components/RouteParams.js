@@ -3,7 +3,6 @@ import React from 'react';
 export default React.createClass({
     render() {
         const { first, second } = this.props.params;
-        console.log('params', this.props.params);
         return (
             <div className='routeParams'>
                 <h2>Routes with Params</h2>
