@@ -1,8 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Router, browserHistory } from 'react-router';
 
 // Import a react component
-import Layout from './components/layout.jsx';
+import routes from './components/Routes';
 
 // By referencing our stylesheet entry point, this forces webpack to run it through
 // its loader system and makes it available as output.
@@ -11,5 +12,5 @@ import Layout from './components/layout.jsx';
 // will be named the same as the stylesheet.
 import './styles/app.scss';
 
-ReactDOM.render(<Layout/>,
+render(<Router routes={routes} history={browserHistory}/>,
 document.querySelector('.appMountPoint'));

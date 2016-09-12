@@ -117,7 +117,8 @@ export default {
           // Creates index.html file using app.html as base template. index.html will 
           // include any css or javascript references automatically
           new HtmlWebpackPlugin({ 
-               // Output defaults to 'index.html'
+               // In prod we want to serve the HTML pre-rendered via the server
+               filename : IS_PROD ? '../tmp/index.html' : 'index.html',
                // Inject assets at the bottom of the body tag. Value can also be 'body'
                inject   : true,
                // emit the file only if it was changed
@@ -134,8 +135,11 @@ export default {
                // Fixes a bug where imports are not recompiled during hot loading
                // Remove once precss fixes this
                postcssImport({ addDependencyTo: webpack }), // This must be first in order for @imports to hot load during development
+               // Allow sass syntax to css
                precss,
+               // Allow next gen css syntax
                postcssnext(),
+               // postcss logging
                postcssReporter({ clearMessages : true }),
           ];
      }
