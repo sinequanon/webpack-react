@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "find ./test -name '*.spec.js' | xargs ./node_modules/.bin/mocha",
+    "test": "mocha",
     "dev": "./node_modules/.bin/webpack-dev-server --inline --hot --history-api-fallback --content-base ./tmp",
-    "dev:webpack-test": "./node_modules/.bin/webpack-dev-server --inline --hot 'mocha!./test/index.js' --output-filename test.js --port 8081 --open",
+    "dev:test": "./node_modules/.bin/webpack-dev-server --inline --hot --config webpack.test.config.babel.js --port 8081 --open",
     "prod": "DEBUG=webpack ./node_modules/.bin/webpack --config webpack.server.config.babel.js && NODE_ENV=production ./node_modules/.bin/webpack --config webpack.config.babel.js && DEBUG=server node tmp/server.bundle.js"
   },
   "author": "",
