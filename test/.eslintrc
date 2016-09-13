@@ -1,0 +1,9 @@
+/* Separate .eslintrc file for the TEST directory */
+{
+    "rules": {
+        "prefer-arrow-callback": "warn",
+        "no-unused-expressions": "warn",
+        "import/no-extraneous-dependencies": "warn",
+        "func-names": "warn"
+    }
+}

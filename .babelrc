@@ -1,6 +1,9 @@
 // Normally we wouldn't need a separate .babelrc file since we run the babel transpiler 
 // through webpack. However we need this in order to be able to write ES6 in the
 // webpack config files.
+// In addition, our testing harness (mocha or jest) would normally not be run
+// through webpack, so this would be required to be able to write or testing any
+// components or code written in es6.
 // If you append the config files with 'babel', it will trigger babel-register
 // and webpack will transpile via the interpret module.
 // eg. webpack.config.js vs webpack.config.babel.js

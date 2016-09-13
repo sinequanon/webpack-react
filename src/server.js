@@ -24,8 +24,9 @@ app.get('*', (req, res) => {
      match({ routes : routes, location : req.url }, ( error, redirectLocation, renderProps ) => {
           if (error) {
                debug('Error', error);
+               res.status(500).send(error.message);
           } else if (redirectLocation) {
-               res.redirect(redirectLocation.pathname + redirectLocation.search)
+               res.redirect(302, redirectLocation.pathname + redirectLocation.search)
           } else if (renderProps) {
                if (!baseHtml) {
                     debug('Loading file...');
@@ -37,11 +38,11 @@ app.get('*', (req, res) => {
                               throw err;
                          }
                          baseHtml = data.toString();
-                         res.send(renderPage(baseHtml, renderProps));
+                         res.status(200).send(renderPage(baseHtml, renderProps));
                     } );
                } else {
                     debug('No file load');
-                    res.send(renderPage(baseHtml, renderProps));
+                    res.status(200).send(renderPage(baseHtml, renderProps));
                }
           } else {
                res.status(404).send('Nada');
