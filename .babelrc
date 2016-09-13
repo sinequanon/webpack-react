@@ -5,5 +5,5 @@
 // and webpack will transpile via the interpret module.
 // eg. webpack.config.js vs webpack.config.babel.js
 {
-    presets : [ 'es2015' ]
+    presets : [ 'es2015', 'react' ]
 }

@@ -1,0 +1,2 @@
+--require chai
+--require babel-core/register
