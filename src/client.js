@@ -14,5 +14,5 @@ import routes from './components/Routes';
 import './styles/app.scss';
 
 render(<Router routes={routes} history={browserHistory}/>,
-//render(<Layout/>,
+// render(<Layout/>,
 document.querySelector('.appMountPoint'));
