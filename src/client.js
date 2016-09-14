@@ -4,6 +4,7 @@ import { Router, browserHistory } from 'react-router';
 
 // Import a react component
 import routes from './components/Routes';
+// import Layout from './components/layout';
 
 // By referencing our stylesheet entry point, this forces webpack to run it through
 // its loader system and makes it available as output.
@@ -13,4 +14,5 @@ import routes from './components/Routes';
 import './styles/app.scss';
 
 render(<Router routes={routes} history={browserHistory}/>,
+//render(<Layout/>,
 document.querySelector('.appMountPoint'));
