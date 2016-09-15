@@ -7,7 +7,7 @@ To get started, run the following commands :
 > `npm i && npm run dev `
 
 This will install the necessary node packages and then run the dev server. Once the
-server is up and running, point your web browser to : 
+server is up and running (you should see the message 'webpack: bundle is now VALID'), point your web browser to : 
 > `http://localhost:8080`
 
 The repo should simulate a fully working app that employs the following features:
@@ -18,7 +18,7 @@ The repo should simulate a fully working app that employs the following features
 
 ### Things that need to be investigated
 
-Data access: Rails to aggregate all existing models for single point access? Exposes existing services?
+Data access: Rails to aggregate all existing models for single point access? Expose existing services?
 
 ## Packages Used
 The stack is composed of the following packages :
