@@ -1,7 +1,6 @@
 # Webpack React React-Router
-## A prototype story
 
-An experimentation repo for exploring a react-based technology stack. 
+An experimentation repo for creating a prototype whose foundation is a react-based technology stack. 
 
 To get started, run the following commands : 
 
@@ -10,6 +9,16 @@ To get started, run the following commands :
 This will install the necessary node packages and then run the dev server. Once the
 server is up and running, point your web browser to : 
 > `http://localhost:8080`
+
+The repo should simulate a fully working app that employs the following features:
+
+* A dev environment using [webpack-dev-server](https://webpack.github.io/docs/webpack-dev-server.html) that supports hot module reloading with both css and js linting on the fly.
+* The ability to run a separate web-dev-server instance that can autorun tests in a separate browser
+* Prod deployment solution that can run code isomorphically (JS code runs on both client and server) so that a page can be pre-rendered from any entry point.
+
+### Things that need to be investigated
+
+Data access: Rails to aggregate all existing models for single point access? Exposes existing services?
 
 ## Packages Used
 The stack is composed of the following packages :
