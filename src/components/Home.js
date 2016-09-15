@@ -10,6 +10,7 @@ class Home extends React.Component {
         return (
             <div className='home'>
                 <h2>Home</h2>
+                <span>This is the simple home page</span>
             </div>
         );
     }

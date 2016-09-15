@@ -11,6 +11,7 @@ class RouteParams extends React.Component {
         return (
             <div className='routeParams'>
                 <h2>Routes with Params</h2>
+                <span>This page explores React-Router's page params</span>
                 <div>
                     <h4>{ `First Param : ${first}` }</h4>
                     <h4>{ `Second Param : ${second}` }</h4>

@@ -1,14 +1,5 @@
 @import 'elements.scss';
-$backgroundcolor: beige;
-
-body {
-    background-color: $backgroundcolor;
-    flex: 1;
-}
-
-h1 {
-    background-image: url('../assets/filestage.png');
-}
+@import 'propsVsState.scss';
 
 .active {
     background-color: palegoldenrod;

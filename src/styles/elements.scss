@@ -1,35 +1,14 @@
+$backgroundcolor: beige;
+body {
+    background-color: $backgroundcolor;
+    flex: 1;
+}
+
 h1 {
     background-color: gold;
+    background-image: url('../assets/filestage.png');
 }
 
 h2 {
     background-color: antiquewhite;
-}
-
-.clickable {
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.childComponent,
-.parentComponent {
-    border: 1px solid #999;
-}
-
-.parentComponent {
-    padding: 20px;
-}
-
-.propLabel,
-.propValue {
-    display: inline-block;
-}
-
-.propLabel {
-    font-weight: 800;
-    width: 100px;
-}
-
-.propValue {
-    margin-left: 20px;
 }
