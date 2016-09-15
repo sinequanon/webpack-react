@@ -56,7 +56,8 @@ export default {
           // The logical path in the browser
           publicPath    : '/'
      },
-     devtool : 'cheap-eval-source-map',
+     // See https://webpack.github.io/docs/configuration.html#devtool for different options
+     devtool : 'source-map',
      resolve : {
           // The location of our node_modules
           root : [

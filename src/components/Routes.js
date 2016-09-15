@@ -2,15 +2,15 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import App from './App';
 import Home from './Home';
-import Section1 from './Section1';
-import Section2 from './Section2';
+import ReactState from './ReactState';
+import PropsVsState from './PropsVsState';
 import RouteParams from './RouteParams';
 
-module.exports = (
+export default (
     <Route path='/' component={App}>
         <IndexRoute component={Home}/>
-        <Route path='/section1' component={Section1}/>
-        <Route path='/section2' component={Section2}/>
+        <Route path='/reactState' component={ReactState}/>
+        <Route path='/propsVsState' component={PropsVsState}/>
         <Route path='/routeParams/:first/:second' component={RouteParams}/>
     </Route>
 );

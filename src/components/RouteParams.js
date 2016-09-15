@@ -1,6 +1,11 @@
 import React from 'react';
 
-export default React.createClass({
+class RouteParams extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
     render() {
         const { first, second } = this.props.params;
         return (
@@ -12,6 +17,7 @@ export default React.createClass({
                 </div>
             </div>
         );
-    },
-});
+    }
+}
 
+export default RouteParams;
