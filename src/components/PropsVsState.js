@@ -79,7 +79,7 @@ class Child extends React.Component {
             </div>
             )
         );
-        const stateTable = <div className='stateTable'>{stateMap}</div>
+        const stateTable = <div className='stateTable'>{stateMap}</div>;
         return (
             <div className='childComponent'>
                 <h3>I'm the last component</h3>
