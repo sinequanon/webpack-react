@@ -1,3 +1,5 @@
 
+.*DS_STORE
 .gitignore
 node_modules
+npm-debug.log
