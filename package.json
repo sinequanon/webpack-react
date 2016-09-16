@@ -1,7 +1,7 @@
 {
   "name": "basic-webpack",
   "version": "1.0.0",
-  "description": "",
+  "description": "An experimentation repo for creating a prototype whose foundation is a react-based technology stack.",
   "main": "index.js",
   "scripts": {
     "test": "mocha",
@@ -60,6 +60,17 @@
     "stylelint-webpack-plugin": "^0.3.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.15.1"
-  }
+    "webpack-dev-server": "^1.15.2"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/sinequanon/webpack-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sinequanon/webpack-react/issues"
+  },
+  "homepage": "https://github.com/sinequanon/webpack-react#readme"
 }
