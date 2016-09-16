@@ -24,7 +24,9 @@ const IS_PROD = process.env.NODE_ENV === 'production';
 let plugins = IS_PROD ? [
                     new webpack.optimize.DedupePlugin(),
                     new webpack.optimize.OccurrenceOrderPlugin(),
-                    new webpack.optimize.UglifyJsPlugin(),
+                    new webpack.optimize.UglifyJsPlugin({
+                         comments: false
+                    }),
                     // Emits css file using naming pattern below
                     new ExtractTextPlugin('[name]-[contenthash].css'),
                     new optimizeCssAssets(),
