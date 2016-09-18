@@ -26,8 +26,13 @@
     },
 
     "parserOptions" : {
+        // Set version to 6 (es2015) by default
+        "ecmaVersion" : 6,
+        "sourceType" : "module",
         // Support JSX via the eslint-plugin-react
         "ecmaFeatures" : {
+            // Enforce global strict mode
+            "impliedStrict" : true,
             "jsx" : true
         }
     },
@@ -49,5 +54,7 @@
         "prefer-template" : "warn",
         // Turn off max length of individual lines
         "max-len" : "off",
+        // Enable optional dangling commas only if multi-line.
+        "comma-dangle" : "only-multiline"
     }
 }
