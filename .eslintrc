@@ -55,6 +55,6 @@
         // Turn off max length of individual lines
         "max-len" : "off",
         // Enable optional dangling commas only if multi-line.
-        "comma-dangle" : "only-multiline"
+        "comma-dangle" : "off"
     }
 }
