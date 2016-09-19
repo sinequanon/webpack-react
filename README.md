@@ -18,7 +18,8 @@ The repo should simulate a fully working app that employs the following features
 
 ### Things that need to be investigated
 
-Data access: Rails to aggregate all existing models for single point access? Expose existing services?
+Redux(http://redux.js.org/) : We should definitely be using something that employs unidirectional data flow.
+Data access: Continue to leverage Rails, et al? TBD.
 
 ## Packages Used
 The stack is composed of the following packages :
