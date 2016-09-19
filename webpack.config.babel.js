@@ -40,14 +40,17 @@ let plugins = IS_PROD ? [
 export default {
      entry : { 
           // The main JS file for the app
-          app : path.resolve(__dirname, 'src', 'client.js'),
-          // Styles are referenced in 'client.js' via an import statement in
-          // order for webpack to process it. However it can also be included
-          // as an entry as seen below. However this will emit a JS output file
-          // with the same name as the stylesheet that will have an empty eval
-          // statement. The import statement method in 'client.js' is
-          // preferred.
-          //style : path.resolve(__dirname, 'src', 'styles', 'app.scss')
+          app : [
+               'react-hot-loader/patch',
+               path.resolve(__dirname, 'src', 'client.js'),
+               // Styles are referenced in 'client.js' via an import statement in
+               // order for webpack to process it. However it can also be included
+               // as an entry as seen below. However this will emit a JS output file
+               // with the same name as the stylesheet that will have an empty eval
+               // statement. The import statement method in 'client.js' is
+               // preferred.
+               //style : path.resolve(__dirname, 'src', 'styles', 'app.scss')
+          ]
      },
      output : {
           // File system path where output files are emitted
@@ -89,7 +92,7 @@ export default {
                     // Disable react hot module loading in PROD
                     loader  : IS_PROD ? 
                               'babel?presets[]=es2015&presets[]=stage-0&presets[]=react&plugins[]=transform-runtime' :
-                              'babel?presets[]=es2015&presets[]=stage-0&presets[]=react&presets[]=react-hmre&plugins[]=transform-runtime'
+                              'babel?presets[]=es2015&presets[]=stage-0&presets[]=react&plugins[]=transform-runtime&plugins[]=react-hot-loader/babel'
                     /*
                      Could also be written :
                      loaders : ['babel-loader', 'eslint-loader'],
