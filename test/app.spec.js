@@ -1,16 +1,15 @@
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import { mount, shallow  } from 'enzyme';
 import jsdom from 'jsdom-global';
-import chai from 'chai';
+import { expect } from 'chai';
 import App from '../src/components/App';
 
-const expect = chai.expect;
 describe('My App', function () {
     let app;
     let ulTag;
     before(function () {
         jsdom();
-        app = TestUtils.renderIntoDocument(<App/>);
+        app = mount(<App/>);
     });
 
     it('should render into document', function () {
@@ -18,7 +17,6 @@ describe('My App', function () {
     });
 
     it('should include the correct number of elements', function () {
-        ulTag = TestUtils.findRenderedDOMComponentWithTag(app, 'ul');
-        expect(ulTag.children.length).to.equal(4);
+        expect(mount(<App/>).find('li')).to.have.length(4);
     });
 });
