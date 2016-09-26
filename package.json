@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "dev": "./node_modules/.bin/webpack-dev-server --progress --inline --hot --history-api-fallback --content-base ./tmp",
-    "dev:test": "./node_modules/.bin/webpack-dev-server --inline --hot --config webpack.test.config.babel.js --port 8081 --open",
-    "prod:webpack-compile-server": "DEBUG=webpack ./node_modules/.bin/webpack --progress --config webpack.server.config.babel.js ",
-    "prod:webpack-compile-client": "NODE_ENV=production ./node_modules/.bin/webpack --progress --config webpack.config.babel.js ",
+    "dev": "./node_modules/.bin/webpack-dev-server --config ./config/webpack.config.babel.js --progress --inline --hot --history-api-fallback --content-base ./tmp",
+    "dev:test": "./node_modules/.bin/webpack-dev-server --inline --hot --config ./config/webpack.test.config.babel.js --port 8081 --open",
+    "prod:webpack-compile-server": "DEBUG=webpack ./node_modules/.bin/webpack --progress --config ./config/webpack.server.config.babel.js ",
+    "prod:webpack-compile-client": "NODE_ENV=production ./node_modules/.bin/webpack --progress --config ./config/webpack.config.babel.js ",
     "prod:run-server": "DEBUG=server node tmp/server.bundle.js",
     "prod": "npm run prod:webpack-compile-server && npm run prod:webpack-compile-client && npm run prod:run-server "
   },
@@ -61,7 +61,8 @@
     "stylelint-webpack-plugin": "^0.3.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.15.2"
+    "webpack-dev-server": "^1.15.2",
+    "webpack-notifier": "^1.4.1"
   },
   "directories": {
     "test": "test"

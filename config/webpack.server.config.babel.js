@@ -3,16 +3,16 @@ var path = require('path')
 
 module.exports = {
 
-  entry: path.resolve(__dirname, 'src', 'server.js'),
+  entry: path.resolve(__dirname, '..', 'src', 'server.js'),
 
   output: {
-    filename: path.resolve(__dirname, 'tmp', 'server.bundle.js')
+    filename: path.resolve(__dirname, '..', 'tmp', 'server.bundle.js')
   },
 
   target: 'node',
 
   // keep node_module paths out of the bundle
-  externals: fs.readdirSync(path.resolve(__dirname, 'node_modules')).concat([
+  externals: fs.readdirSync(path.resolve(__dirname, '../node_modules')).concat([
     'react-dom/server', 'react/addons',
   ]).reduce(function (ext, mod) {
     ext[mod] = 'commonjs ' + mod
