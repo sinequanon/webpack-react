@@ -22,8 +22,8 @@ import React from 'react';
  * See https://facebook.github.io/react/docs/reusable-components.html#stateless-functions
  */
 export default () => (
-    <div className='home'>
-        <h2>Home</h2>
-        <span>This is the simple home page</span>
-    </div>
+  <div className='home'>
+    <h2>Home</h2>
+    <span>This is the simple home page</span>
+  </div>
 );

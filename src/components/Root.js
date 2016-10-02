@@ -7,5 +7,5 @@ import { Router, browserHistory } from 'react-router';
 import routes from './Routes';
 
 export default () => (
-    <Router routes={routes} history={browserHistory}/>
+  <Router routes={routes} history={browserHistory}/>
 );

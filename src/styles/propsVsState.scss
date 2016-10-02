@@ -1,38 +1,38 @@
 .clickable {
-    text-decoration: underline;
-    cursor: pointer;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .childComponent,
 .parentComponent {
-    border: 1px solid #999;
+  border: 1px solid #999;
 }
 
 .parentComponent {
-    padding: 20px;
+  padding: 20px;
 }
 
 .propLabel,
 .propValue {
-    display: inline-block;
+  display: inline-block;
 }
 
 .propLabel {
-    font-weight: 800;
-    width: 100px;
+  font-weight: 800;
+  width: 100px;
 }
 
 .propValue {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .propsVsStateBox,
 .propInputBox {
-    display: flex;
+  display: flex;
 }
 
 .propInputBox {
-    flex-direction: column;
-    flex: 1;
-    flex-basis: 200px;
+  flex-direction: column;
+  flex: 1;
+  flex-basis: 200px;
 }

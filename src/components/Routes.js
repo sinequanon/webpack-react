@@ -20,10 +20,10 @@ import RouteParams from './RouteParams';
 // };
 // export default routeConfig;
 export default (
-    <Route path='/' component={App}>
-        <IndexRoute component={Home}/>
-        <Route path='/reactState' component={ReactState}/>
-        <Route path='/propsVsState' component={PropsVsState}/>
-        <Route path='/routeParams/:first/:second' component={RouteParams}/>
-    </Route>
+  <Route path='/' component={App}>
+    <IndexRoute component={Home}/>
+    <Route path='/reactState' component={ReactState}/>
+    <Route path='/propsVsState' component={PropsVsState}/>
+    <Route path='/routeParams/:first/:second' component={RouteParams}/>
+  </Route>
 );

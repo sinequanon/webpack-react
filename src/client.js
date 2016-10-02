@@ -16,22 +16,22 @@ import './styles/app.scss';
 
 const IS_PROD = process.env.NODE_ENV === 'production';
 const rootComponent = IS_PROD ?
-                    <Root/> :
-                    <AppContainer><Root/></AppContainer>;
+  <Root/> :
+  <AppContainer><Root/></AppContainer>;
 
 const DOM_MOUNT_POINT = document.querySelector('.appMountPoint');
 render(rootComponent,
-        // render(<Layout/>,
-        DOM_MOUNT_POINT);
+  // render(<Layout/>,
+  DOM_MOUNT_POINT);
 
 if (module.hot) { // This only runs in DEV
-    module.hot.accept('./components/Root', () => {
-        // Reload and rename the root module. You cannot reuse the Root
-        // variable. The inexplicable will happen if you do.
-        const HotRoot = require('./components/Root').default;   // eslint-disable-line
-        // Prevent the hot reloading error from react-router
-        unmountComponentAtNode(DOM_MOUNT_POINT);
-        render(<AppContainer><HotRoot/></AppContainer>,
-            DOM_MOUNT_POINT);
-    });
+  module.hot.accept('./components/Root', () => {
+    // Reload and rename the root module. You cannot reuse the Root
+    // variable. The inexplicable will happen if you do.
+    const HotRoot = require('./components/Root').default;   // eslint-disable-line
+    // Prevent the hot reloading error from react-router
+    unmountComponentAtNode(DOM_MOUNT_POINT);
+    render(<AppContainer><HotRoot/></AppContainer>,
+      DOM_MOUNT_POINT);
+  });
 }

@@ -1,19 +1,19 @@
 import React from 'react';
 
 class Layout extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    render() {
-        return (
-            <div>
-                <h1>React</h1>
-                <h2>Test</h2>
-                <h3>Page</h3>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <h1>React</h1>
+        <h2>Test</h2>
+        <h3>Page</h3>
+      </div>
+    );
+  }
 
 }
 /* 
@@ -29,5 +29,5 @@ export default React.createClass({
         );
     },
 }); 
- */
+*/
 export default Layout;
