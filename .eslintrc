@@ -55,6 +55,12 @@
         // Turn off max length of individual lines
         "max-len" : "off",
         // Enable optional dangling commas only if multi-line.
-        "comma-dangle" : "off"
+        "comma-dangle" : "off",
+        // Warn if using semicolons.
+        // See the following for reasoning:
+        // http://blog.izs.me/post/2353458699/an-open-letter-to-javascript-leaders-regarding
+        // http://inimino.org/~inimino/blog/javascript_semicolons
+        // https://www.youtube.com/watch?v=gsfbh17Ax9I
+        "semi" : [ "warn", "never" ]
     }
 }

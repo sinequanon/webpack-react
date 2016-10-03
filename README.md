@@ -26,7 +26,7 @@ The stack is composed of the following packages :
 
 * [React](https://github.com/petehunt/react-howto)
     * Component-based rendering of *UI*
-* [React-Router](https://github.com/ReactTraining/react-router)
+* [React-Router](https://react-router.now.sh)
     * A recreation of the _Ember router_ 
 * [Express JS](http://expressjs.com) 
     * Popular http server for Node. This will allow us to create isomorphic code that can run on both the server and the client.

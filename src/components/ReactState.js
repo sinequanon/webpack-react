@@ -1,19 +1,19 @@
-import React from 'react';
+import React from 'react'
 
 class Section1 extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = {};
+    super(props)
+    this.state = {}
   }
 
   onClicked(event) {
     const message = typeof event === 'string' ?
       `Using React function binding : You clicked ${event}` :
-      `Using DOM access : You clicked ${event.target.attributes.name.value}`;
+      `Using DOM access : You clicked ${event.target.attributes.name.value}`
 
-      this.setState({
-        message,
-      });
+    this.setState({
+      message,
+    })
   }
 
   render() {
@@ -30,8 +30,8 @@ class Section1 extends React.Component {
           <h3>{this.state.message}</h3>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Section1;
+export default Section1

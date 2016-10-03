@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 /**
  * Parent Component
@@ -9,7 +9,7 @@ class Parent extends React.Component {
    */
   // componentWillReceiveProps(nextProps) {
   //     // Pass the props coming from the page to my state
-  //     this.setState(nextProps);
+  //     this.setState(nextProps)
   // }
 
   render() {
@@ -20,8 +20,8 @@ class Parent extends React.Component {
           <span className='propValue'>{JSON.stringify(this.props[key])}</span>
           </div>
         )
-    );
-    const propsTable = <div className='propTable'>{propsMap}</div>;
+    )
+    const propsTable = <div className='propTable'>{propsMap}</div>
     return (
       <div className='parentComponent'>
       <h3>This is the second component.</h3>
@@ -29,7 +29,7 @@ class Parent extends React.Component {
       {propsTable}
       <Child {...this.props}/>
       </div>
-    );
+    )
   }
 }
 
@@ -38,36 +38,36 @@ class Parent extends React.Component {
  */
 class Child extends React.Component {
   constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = props;
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+    this.state = props
   }
 
   handleChange(type, event) {
     try {
-      const value = event.target.value;
-      let state;
+      const value = event.target.value
+      let state
       if (type === 'object') {
         state = {
           objectProp: JSON.parse(event.target.value),
-        };
+        }
       } else if (type === 'string') {
         state = {
           stringProp: value,
-        };
+        }
       } else if (type === 'number') {
         state = {
           numberProp: +value,
-        };
+        }
       }
-      this.setState(state);
+      this.setState(state)
     } catch (error) {
       // invalid json
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState(nextProps);
+    this.setState(nextProps)
   }
 
   render() {
@@ -78,8 +78,8 @@ class Child extends React.Component {
           <span className='propValue'>{JSON.stringify(this.state[key])}</span>
           </div>
         )
-    );
-    const stateTable = <div className='stateTable'>{stateMap}</div>;
+    )
+    const stateTable = <div className='stateTable'>{stateMap}</div>
     return (
       <div className='childComponent'>
       <h3>I'm the last component</h3>
@@ -89,7 +89,7 @@ class Child extends React.Component {
       {stateTable}
       </div>
       </div>
-    );
+    )
   }
 }
 
@@ -111,7 +111,7 @@ class EnterProps extends React.Component {
       <label htmlFor='objectProp'>Object Prop</label>
       <input id='objectProp' type='text' onChange={this.props.handleChange.bind(this, 'object')} defaultValue={JSON.stringify(this.props.objectProp)}/>
       </div>
-      </div>);
+      </div>)
   }
 }
 
@@ -120,34 +120,34 @@ class EnterProps extends React.Component {
  */
 class PropsVsState extends React.Component {
   constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = {};
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+    this.state = {}
     this.state = {
       stringProp: 'This is sample text',
       numberProp: 3,
       objectProp: { useReact: true },
-    };
+    }
   }
 
   handleChange(type, event) {
     try {
-      const value = event.target.value;
-      let state;
+      const value = event.target.value
+      let state
       if (type === 'object') {
         state = {
           objectProp: JSON.parse(event.target.value),
-        };
+        }
       } else if (type === 'string') {
         state = {
           stringProp: value,
-        };
+        }
       } else if (type === 'number') {
         state = {
           numberProp: +value,
-        };
+        }
       }
-      this.setState(state);
+      this.setState(state)
     } catch (error) {
       // invalid json
     }
@@ -165,8 +165,8 @@ class PropsVsState extends React.Component {
           <Parent stringProp={this.state.stringProp} numberProp={this.state.numberProp} objectProp={this.state.objectProp}/>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default PropsVsState;
+export default PropsVsState
