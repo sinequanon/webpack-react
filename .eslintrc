@@ -61,6 +61,7 @@
         // http://blog.izs.me/post/2353458699/an-open-letter-to-javascript-leaders-regarding
         // http://inimino.org/~inimino/blog/javascript_semicolons
         // https://www.youtube.com/watch?v=gsfbh17Ax9I
+        // http://slides.com/evanyou/semicolons
         "semi" : [ "warn", "never" ]
     }
 }

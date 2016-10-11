@@ -3,12 +3,16 @@
  */
 import React from 'react'
 import { BrowserRouter, Match } from 'react-router'
+import { Provider } from 'react-redux'
+
 import App from './App'
 import ReactState from './ReactState'
 import PropsVsState from './PropsVsState'
 import RouteParams from './RouteParams'
 import Home from './Home'
 import routeMap from './Routes'
+import configureStore from '../redux/configureStore'
+import Forms from './forms/Forms'
 
 const useConfig = false
 let appComponent
@@ -26,10 +30,13 @@ if (useConfig) {
     <Match pattern='/reactState' component={ReactState} />
     <Match pattern='/propsVsState' component={PropsVsState} />
     <Match pattern='/routeParams/:first/:second' component={RouteParams} />
+    <Match pattern='/forms' component={Forms} />
   </App>
 }
 
 export default () =>
   <BrowserRouter>
-    {appComponent}
+    <Provider store={configureStore()}>
+      {appComponent}
+    </Provider>
   </BrowserRouter>

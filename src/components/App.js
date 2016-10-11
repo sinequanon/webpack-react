@@ -38,6 +38,7 @@ export default props => (
     <li><NavLink to='/reactState'>Using React state</NavLink></li>
     <li><NavLink to='/propsVsState'>Props and State</NavLink></li>
     <li><NavLink to='/routeParams/react/rules'>Routes params</NavLink></li>
+    <li><NavLink to='/forms'>Forms</NavLink></li>
     </ul>
     { props.children }
     </div>

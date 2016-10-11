@@ -17,6 +17,6 @@ describe('My App', function () {
     });
 
     it('should include the correct number of elements', function () {
-        expect(mount(<App/>).find('li')).to.have.length(4);
+        expect(mount(<App/>).find('li')).to.have.length(5);
     });
 });

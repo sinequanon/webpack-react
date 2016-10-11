@@ -71,7 +71,7 @@ export default {
                     // Disable react hot module loading in PROD
                     loader  : IS_PROD ? 
                               'babel?presets[]=react' :
-                              'babel?presets[]=react&plugins[]=react-hot-loader/babel'
+                              'babel?presets[]=react&plugins[]=transform-object-rest-spread&plugins[]=transform-runtime&plugins[]=react-hot-loader/babel'
                     /*
                      Could also be written :
                      loaders : ['babel-loader', 'eslint-loader'],
