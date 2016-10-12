@@ -12,7 +12,7 @@ import Root from './components/Root'
 // Another way to include a style sheet is to add it as an entry in the
 // webpack.config.js file. However this will create an unecessary output file that
 // will be named the same as the stylesheet.
-import './styles/app.scss'
+import './styles/app.css'
 
 const IS_PROD = process.env.NODE_ENV === 'production'
 const rootComponent = IS_PROD ?

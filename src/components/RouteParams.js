@@ -1,4 +1,5 @@
 import React from 'react'
+import AppBar from 'material-ui/AppBar'
 
 class RouteParams extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class RouteParams extends React.Component {
     const { first, second } = this.props.params
     return (
       <div className='routeParams'>
-      <h2>Routes with Params</h2>
+      <AppBar title='Routes with Params'/>
       <span>This page explores React-Router's page params</span>
       <div>
       <h4>{ `First Param : ${first}` }</h4>

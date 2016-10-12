@@ -1,4 +1,5 @@
 import React from 'react'
+import AppBar from 'material-ui/AppBar'
 
 class Section1 extends React.Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class Section1 extends React.Component {
   render() {
     return (
       <div className='section1'>
-        <h2>React state</h2>
+        <AppBar title='React State'/>
         <h3>These links use React state to render</h3>
         <ul>
           <li className='clickable' name='React' onClick={this.onClicked.bind(this, 'React')}>React</li>

@@ -1,0 +1,20 @@
+$backgroundcolor: beige;
+
+body {
+  /* background-color: $backgroundcolor; */
+  flex: 1;
+}
+
+h1 {
+  /* background-color: gold; */
+  background-image: url('../assets/filestage.png');
+}
+
+h2 {
+  /* background-color: antiquewhite; */
+}
+
+a {
+  text-decoration: none;
+  display: block;
+}

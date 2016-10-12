@@ -1,4 +1,5 @@
 import React from 'react'
+import AppBar from 'material-ui/AppBar'
 
 /**
  * Parent Component
@@ -156,7 +157,7 @@ class PropsVsState extends React.Component {
   render() {
     return (
       <div className='PropsVsState'>
-        <h2>Props vs State</h2>
+        <AppBar title='Props vs State'/>
         <div><span>This page explores two React concepts: component props and component state.</span><a href='https://github.com/uberVU/react-guide/blob/master/props-vs-state.md'>This page</a> does a good job at explaining the difference between the two.</div>
         <div>
           <h3>I'm the first component in the hierarchy.</h3>
