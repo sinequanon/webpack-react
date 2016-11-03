@@ -33,7 +33,11 @@ let plugins = [
     'process.env.NODE_ENV':  JSON.stringify(process.env.NODE_ENV)
   }),
   // Moves any common code that webpack finds into a unified file
-  new webpack.optimize.CommonsChunkPlugin('common', 'common.js'),
+  new webpack.optimize.CommonsChunkPlugin({
+    minChunks: 2,
+    name: 'common',
+    filename: 'common.js'
+  }),
   // Creates index.html file using app.html as base template.
   // index.html will include any css or javascript references
   // automatically

@@ -29,7 +29,8 @@ export default {
       // statement. The import statement method in 'client.js' is
       // preferred.
       //style : path.resolve(__dirname, 'src', 'styles', 'app.scss')
-    ]
+    ],
+    common : [ path.resolve(__dirname, '..', 'src', 'common.js') ]
   },
     output : {
       // File system path where output files are emitted
