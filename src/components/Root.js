@@ -2,7 +2,7 @@
  * Alternate file where we define the Router in a separate component
  */
 import React from 'react'
-import { BrowserRouter, Match } from 'react-router'
+import { Match } from 'react-router'
 import { Provider } from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
@@ -45,8 +45,6 @@ if (useConfig) {
 injectTapEventPlugin()
 
 export default () =>
-  <BrowserRouter>
     <Provider store={configureStore()}>
       {appComponent}
     </Provider>
-  </BrowserRouter>

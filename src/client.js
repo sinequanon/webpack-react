@@ -2,6 +2,7 @@
 import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 import { AppContainer } from 'react-hot-loader' // Support hot loading
+import { BrowserRouter } from 'react-router'
 
 // Import our react component that contains the react router
 import Root from './components/Root'
@@ -16,8 +17,8 @@ import './styles/app.css'
 
 const IS_PROD = process.env.NODE_ENV === 'production'
 const rootComponent = IS_PROD ?
-  <Root/> :
-  <AppContainer><Root/></AppContainer>
+  <BrowserRouter><Root/></BrowserRouter> :
+  <AppContainer><BrowserRouter><Root/></BrowserRouter></AppContainer>
 
 const DOM_MOUNT_POINT = document.querySelector('.appMountPoint')
 render(rootComponent,
@@ -31,7 +32,7 @@ if (module.hot) { // This only runs in DEV
     const HotRoot = require('./components/Root').default   // eslint-disable-line
     // Prevent the hot reloading error from react-router
     unmountComponentAtNode(DOM_MOUNT_POINT)
-    render(<AppContainer><HotRoot/></AppContainer>,
+    render(<AppContainer><BrowserRouter><HotRoot/></BrowserRouter></AppContainer>,
       DOM_MOUNT_POINT)
   })
 }

@@ -17,7 +17,7 @@ export default () => {
     middleware.push(require('redux-logger')())
   }
   // Support redux dev tools
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+  const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
   const store = createStore(
     reducers,
     composeEnhancers(
