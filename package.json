@@ -4,10 +4,14 @@
   "description": "An experimentation repo for creating a prototype whose foundation is a react-based technology stack.",
   "main": "index.js",
   "scripts": {
-    "dev": "./node_modules/.bin/webpack-dev-server --config ./config/webpack.config.babel.js --progress --inline --hot --history-api-fallback --content-base ./tmp",
-    "dev:test": "./node_modules/.bin/webpack-dev-server --inline --hot --config ./config/webpack.test.config.babel.js --port 8081 --open",
-    "prod:webpack-compile-server": "DEBUG=webpack ./node_modules/.bin/webpack --progress --config ./config/webpack.server.config.babel.js ",
-    "prod:webpack-compile-client": "NODE_ENV=production ./node_modules/.bin/webpack --progress --config ./config/webpack.config.babel.js ",
+    "dev": "webpack-dev-server --config ./config/webpack.config.babel.js --progress --inline --hot --history-api-fallback --content-base ./tmp",
+    "dev:test": "webpack-dev-server --inline --hot --config ./config/webpack.test.config.babel.js --port 8081 --open",
+    "git:last-file-commits": "git diff-tree --no-commit-id --name-only -r HEAD",
+    "git:last-commits-of-type": "npm run -s git:last-file-commits | grep",
+    "lint:js": "npm run -s git:last-commits-of-type -- js$ | xargs eslint",
+    "lint:css": "npm run -s git:last-commits-of-type -- css$ | xargs stylelint",
+    "prod:webpack-compile-server": "DEBUG=webpack rm -rf dist tmp && webpack --progress --config ./config/webpack.server.config.babel.js ",
+    "prod:webpack-compile-client": "NODE_ENV=production webpack --progress --config ./config/webpack.config.babel.js ",
     "prod:run-server": "DEBUG=server node tmp/server.bundle.js",
     "prod": "npm run prod:webpack-compile-server && npm run prod:webpack-compile-client && npm run prod:run-server ",
     "start": "npm run dev",
@@ -17,7 +21,6 @@
   "license": "ISC",
   "dependencies": {
     "compression": "^1.6.2",
-    "express": "^4.14.0",
     "material-ui": "latest",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
@@ -27,7 +30,8 @@
     "redux": "^3.6.0",
     "redux-form": "^6.1.0",
     "redux-form-material-ui": "^4.1.0",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "restify": "^4.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.14.0",

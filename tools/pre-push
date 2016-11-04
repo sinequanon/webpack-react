@@ -1,0 +1,37 @@
+#!/bin/sh
+
+exitCode=0
+bold=`tput bold`
+red=`tput setaf 1`
+green=`tput setaf 2`
+reset=`tput sgr0`
+error=${bold}${red}
+success=${bold}${green}
+errorBanner="${error}-------------------------------------------------
+PRE-PUSH FAILED
+-------------------------------------------------${reset}"
+successBanner="${success}-------------------------------------------------
+PRE-PUSH OK
+-------------------------------------------------${reset}"
+FAIL=0
+
+# commit hook for javascript
+npm run lint:js
+if [ $? -ne 0 ]; then
+    let "FAIL+=1"
+fi
+
+# commit hook for styles
+npm run lint:css
+if [ $? -ne 0 ]; then
+    let "FAIL+=1"
+fi
+
+# Fail if non-zero result
+if [[ $FAIL > 0 ]]; then
+    echo "${errorBanner}"
+    exit 1
+else
+    echo "${successBanner}"
+    exit 0
+fi

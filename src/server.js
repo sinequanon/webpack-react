@@ -1,5 +1,5 @@
 import React from 'react'
-import express from 'express'
+import restify from 'restify'
 import path from 'path'
 import fs from 'fs'
 import { renderToString } from 'react-dom/server'
@@ -13,20 +13,26 @@ const debug = require('debug')('server') /* eslint import/no-extraneous-dependen
 
 const PORT = process.env.PORT || 8080
 
-const app = express()
+const app = restify.createServer()
 
 if (process.env.NODE_ENV === 'production') {
   app.use(compression())
   debug('Running PRODUCTION')
 }
-// Tell express where to load static assets
-app.use(express.static(path.resolve(__dirname, '../dist')))
 
 const renderPage = (baseHtml, content) =>
   baseHtml.replace('<div class="appMountPoint"></div>', `<div class="appMountPoint">${content}</div>`)
 
 let baseHtml
-app.get('*', (req, res) => {
+
+// Target the compiled output directory
+const distDirectory = path.resolve(__dirname, '..', 'dist')
+
+// Tell restify where to load static assets
+app.get(/.*(png|jpg|gif)/, restify.serveStatic({ directory: distDirectory }))
+app.get(/.*(js|css)/, restify.serveStatic({ directory: distDirectory }))
+
+app.get(/\//, (req, res) => {
   const context = createServerRenderContext()
 
   let markup = renderToString(
@@ -40,7 +46,7 @@ app.get('*', (req, res) => {
   const result = context.getResult()
 
   if (result.redirect) {
-    res.status(301).location(result.redirect.pathname)
+    res.redirect(301, result.redirect.pathname)
   } else {
     if (result.missed) {
       res.status(404)
@@ -51,7 +57,7 @@ app.get('*', (req, res) => {
           <Root/>
         </ServerRouter>
       )
-      res.send(markup)
+      res.end(markup)
     }
 
     let fullMarkup
@@ -66,16 +72,18 @@ app.get('*', (req, res) => {
         }
         baseHtml = data.toString()
         fullMarkup = renderPage(baseHtml, markup)
-        res.status(200).send(fullMarkup)
+        res.status(200)
+        res.end(fullMarkup)
       })
     } else {
       debug('No file load')
       fullMarkup = renderPage(baseHtml, markup)
-      res.status(200).send(fullMarkup)
+      res.status(200)
+      res.end(fullMarkup)
     }
   }
 })
 
 app.listen(PORT, () => {
-  debug('Express listening on port %s', PORT)
+  debug('Restify listening on port %s', PORT)
 })

@@ -37,6 +37,9 @@
         }
     },
 
+    // 0 : off
+    // 1 : warning
+    // 2 : error
     "rules" : {
         // Prevent eslint from complaining when a react component is used in JSX
         // but not explicitly used in normal javascript
@@ -49,19 +52,19 @@
         "react/react-in-jsx-scope" : 1,
         //"indent" : [ "warn", 4 ],
         // Class methods that do not reference 'this' will normally trigger this warning
-        "class-methods-use-this" : "off",
+        "class-methods-use-this" : 0,
         // Use ES6 templates instead of string concatenation
-        "prefer-template" : "warn",
+        "prefer-template" : 1,
         // Turn off max length of individual lines
-        "max-len" : "off",
+        "max-len" : 0,
         // Enable optional dangling commas only if multi-line.
-        "comma-dangle" : "off",
+        "comma-dangle" : 0,
         // Warn if using semicolons.
         // See the following for reasoning:
         // http://blog.izs.me/post/2353458699/an-open-letter-to-javascript-leaders-regarding
         // http://inimino.org/~inimino/blog/javascript_semicolons
         // https://www.youtube.com/watch?v=gsfbh17Ax9I
         // http://slides.com/evanyou/semicolons
-        "semi" : [ "warn", "never" ]
+        "semi" : [ 1, "never" ]
     }
 }
