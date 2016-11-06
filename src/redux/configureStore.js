@@ -28,11 +28,8 @@ export default () => {
   if (module.hot) {
     console.log('reducers hot...') // eslint-disable-line
     module.hot.accept('./Reducers', () => {
-      const nextRootReducer = require('./Reducers')
+      const nextRootReducer = require('./Reducers').default
       store.replaceReducer(nextRootReducer)
-      // return true to indicate that this module is accepted and
-      // there is no need to reload its parent modules
-      return true
     })
   }
   return store
